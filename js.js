@@ -217,7 +217,7 @@ class ActionsHeros {
     ];
 
     switch (this.key) {
-      case "w":
+      case "KeyW":
         if (
           this.heroY > 0 &&
           (this.map[this.heroY - 1][this.heroX].type === 0 ||
@@ -227,6 +227,9 @@ class ActionsHeros {
           if (this.map[this.heroY - 1][this.heroX].type === 3) {
             this.map[this.heroY][this.heroX].HP +=
               this.map[this.heroY - 1][this.heroX].prop;
+              if(this.map[this.heroY][this.heroX].HP > 100){
+                this.map[this.heroY][this.heroX].HP = 100;
+              }
           }
           if (this.map[this.heroY - 1][this.heroX].type === 2) {
             this.map[this.heroY][this.heroX].atack +=
@@ -236,7 +239,7 @@ class ActionsHeros {
         }
         break;
 
-      case "s":
+      case "KeyS":
         if (
           this.heroY < this.mapHeight - 1 &&
           (this.map[this.heroY + 1][this.heroX].type === 0 ||
@@ -246,6 +249,9 @@ class ActionsHeros {
           if (this.map[this.heroY + 1][this.heroX].type === 3) {
             this.map[this.heroY][this.heroX].HP +=
               this.map[this.heroY + 1][this.heroX].prop;
+              if(this.map[this.heroY][this.heroX].HP > 100){
+                this.map[this.heroY][this.heroX].HP = 100;
+              }
           }
           if (this.map[this.heroY + 1][this.heroX].type === 2) {
             this.map[this.heroY][this.heroX].atack +=
@@ -255,7 +261,7 @@ class ActionsHeros {
         }
         break;
 
-      case "a":
+      case "KeyA":
         if (
           this.heroX > 0 &&
           (this.map[this.heroY][this.heroX - 1].type === 0 ||
@@ -265,6 +271,9 @@ class ActionsHeros {
           if (this.map[this.heroY][this.heroX - 1].type === 3) {
             this.map[this.heroY][this.heroX].HP +=
               this.map[this.heroY][this.heroX - 1].prop;
+              if(this.map[this.heroY][this.heroX].HP > 100){
+                this.map[this.heroY][this.heroX].HP = 100;
+              }
           }
           if (this.map[this.heroY][this.heroX - 1].type === 2) {
             this.map[this.heroY][this.heroX].atack +=
@@ -274,7 +283,7 @@ class ActionsHeros {
         }
         break;
 
-      case "d":
+      case "KeyD":
         if (
           this.heroX < this.mapWidth - 1 &&
           (this.map[this.heroY][this.heroX + 1].type === 0 ||
@@ -288,12 +297,15 @@ class ActionsHeros {
           if (this.map[this.heroY][this.heroX + 1].type === 3) {
             this.map[this.heroY][this.heroX].HP +=
               this.map[this.heroY][this.heroX + 1].prop;
+              if(this.map[this.heroY][this.heroX].HP > 100){
+                this.map[this.heroY][this.heroX].HP = 100;
+              }
           }
           newHeroX = this.heroX + 1;
         }
         break;
 
-      case " ":
+      case "Space":
         for (let i = 0; i < adjacentCells.length; i++) {
           const x = adjacentCells[i][0];
           const y = adjacentCells[i][1];
@@ -442,7 +454,7 @@ heroX = XY[0];
 heroY = XY[1];
 
 document.addEventListener("keydown", function (e) {
-  const key = e.key.toLowerCase();
+  const key = e.code;
   const actionsHeros = new ActionsHeros(
     key,
     heroX,
